@@ -80,6 +80,20 @@ class Pet(Base):
     def __repr__(self):
         return "{}: {}".format(self.name, self.breed)
 
+class Shelter(Base):
+    """
+    domain model class for animal shelters
+    """
+    __tablename__ = 'shelter'
+
+    #database fields
+
+    id = Column(Integer, primary_key = True)
+    name = Column(String, nullable = False)
+    website = Column(String, nullable = False)
+
+    def __repr__(self):
+        return "{}: {}".format(self.name, self.website)
 
 
 
