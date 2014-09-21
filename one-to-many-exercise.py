@@ -75,7 +75,7 @@ class Pet(Base):
     age = Column(Integer, nullable = True)
     adopted = Column(Boolean, nullable = True)
     breed_id = Column(Integer, ForeignKey('breed.id'), nullable = False)
-    shelter_id = Column(Integer, ForeignKey('shelter.id'), nullable = False)
+    shelter_id = Column(Integer, ForeignKey('shelter.id'), nullable = True)
 
     def __repr__(self):
         return "{}: {}".format(self.name, self.breed)
@@ -217,6 +217,14 @@ if __name__ == "__main__":
     sue = Pet(name = 'Sue', age = 8, adopted = True, breed_id = poodle.id)
     db_session.add_all([thomas, sue])
     db_session.commit()
+
+
+    num_pets = db_session.query(Pet).count()
+    num_breeds = db_session.query(Breed).count()
+    num_species = db_session.query(Species).count()
+    num_shelter = db_session.query(Shelter).count()
+
+    log.info("There are now {} pets, {} breeds, {} species, and {} shelters in the database.".format(num_pets, num_breeds, num_species, num_shelter))
 
 
 
