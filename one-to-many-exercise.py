@@ -108,8 +108,6 @@ def init_db(engine):
 
     log.info("  - tables dropped and created")
 
-
-
 if __name__ == "__main__":
     log.info("main executing:")              
 
@@ -206,7 +204,14 @@ if __name__ == "__main__":
     log.info("Now parrot.id is {} and norwegian_blue.id is {}".format(
         parrot.id, norwegian_blue.id))    
 
-    
+    log.info("Creating two animal shelters to house orphaned pets")
+    nyc_pet_orphanage = Shelter(name = "NYC Pet Orphanage", website = "http://www.nyc-pet-orphanage.com")
+    new_orleans_pet_hotel = Shelter(name = "New Orleans Pet Hotel", website = "http://www.neworleanspethotel.com")
+
+    log.info("Adding animal shelters to session and committing")
+    db_session.add_all([nyc_pet_orphanage, new_orleans_pet_hotel])
+    db_session.commit()
+
     #################################################
     #  Now it's up to you to complete this script ! #
     #################################################
