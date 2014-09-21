@@ -212,6 +212,14 @@ if __name__ == "__main__":
     db_session.add_all([nyc_pet_orphanage, new_orleans_pet_hotel])
     db_session.commit()
 
+    log.info("Creating two pets, Thomas and Sue")
+    thomas = Pet(name = 'Thomas', age = 5, adopted = False, breed_id = golden.id, shelter_id = nyc_pet_orphanage.id)
+    sue = Pet(name = 'Sue', age = 8, adopted = True, breed_id = poodle.id)
+    db_session.add_all([thomas, sue])
+    db_session.commit()
+
+
+
     #################################################
     #  Now it's up to you to complete this script ! #
     #################################################
